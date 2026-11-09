@@ -1,0 +1,54 @@
+```python
+class Product:
+    def __init__(self, product_id, product_name, price):
+        self.product_id = product_id
+        self.product_name = product_name
+        self.price = price
+
+    def display_product(self):
+        print("Product ID:", self.product_id)
+        print("Product Name:", self.product_name)
+        print("Price:", self.price)
+
+class Customer:
+    def __init__(self, customer_name):
+        self.customer_name = customer_name
+        self.shopping_cart = []
+
+    def add_product(self, product):
+        self.shopping_cart.append(product)
+
+    def remove_product(self, product_name):
+        self.shopping_cart = [
+            p for p in self.shopping_cart
+            if p.product_name != product_name
+        ]
+
+    def display_cart(self):
+        print("Customer Name:", self.customer_name)
+        print("Shopping Cart:")
+        for product in self.shopping_cart:
+            print(product.product_name, "-", product.price)
+
+    def calculate_total(self):
+        total = sum(p.price for p in self.shopping_cart)
+        print("Total Cost:", total)
+
+p1 = Product(101, "Laptop", 50000)
+p2 = Product(102, "Mouse", 800)
+p3 = Product(103, "Keyboard", 1500)
+
+customer = Customer("Ravi")
+
+customer.add_product(p1)
+customer.add_product(p2)
+
+customer.display_cart()
+customer.calculate_total()
+
+customer.remove_product("Mouse")
+
+print("\nAfter Removing Product:")
+customer.display_cart()
+customer.calculate_total()
+```
